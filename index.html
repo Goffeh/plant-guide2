@@ -175,9 +175,10 @@
       display: flex;
       gap: 4px;
       margin-bottom: 4px;
+      align-items: flex-start;
     }
     .search-input, .search-select {
-      flex: 1;
+      width: 100%;
       padding: 8px 10px;
       border: 1px solid var(--input-border);
       border-radius: 6px;
@@ -210,6 +211,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      margin-top: 4px;
     }
     .file-upload-wrapper { margin-top: 15px; }
     .file-upload-label {
@@ -365,23 +367,18 @@
     }
     .combo-input {
       display: flex;
+      flex-direction: column;
       gap: 4px;
       flex: 1;
-    }
-    .combo-input .search-select {
-      flex: 1;
-      min-width: 0;
-    }
-    .combo-input .search-input {
-      flex: 1;
-      min-width: 0;
     }
     .input-divider {
       display: flex;
       align-items: center;
+      justify-content: center;
       color: var(--text-secondary);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
+      text-transform: uppercase;
     }
   </style>
 </head>
@@ -438,10 +435,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="growth">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="growth">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="growth">
                 </div>
               </div>
             </div>
@@ -453,10 +450,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="leaf">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="leaf">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="leaf">
                 </div>
               </div>
             </div>
@@ -468,10 +465,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="flower">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="flower">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="flower">
                 </div>
               </div>
             </div>
@@ -483,10 +480,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="fruit">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="fruit">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="fruit">
                 </div>
               </div>
             </div>
@@ -498,10 +495,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="distribution">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="distribution">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="distribution">
                 </div>
               </div>
             </div>
@@ -513,10 +510,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="reproductive">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="reproductive">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="reproductive">
                 </div>
               </div>
             </div>
@@ -528,10 +525,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="dispersal">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="dispersal">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="dispersal">
                 </div>
               </div>
             </div>
@@ -543,10 +540,10 @@
               <div class="search-input-wrapper">
                 <div class="combo-input">
                   <select class="search-select" onchange="filterFamilies()" data-field="uses">
-                    <option value="">-- Select --</option>
+                    <option value="">-- Select from list --</option>
                   </select>
-                  <span class="input-divider">or</span>
-                  <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="uses">
+                  <span class="input-divider">or type below</span>
+                  <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="uses">
                 </div>
               </div>
             </div>
@@ -660,7 +657,7 @@
         const selects = document.querySelectorAll(`select[data-field="${field}"]`);
         selects.forEach(select => {
           const currentValue = select.value;
-          select.innerHTML = '<option value="">-- Select --</option>';
+          select.innerHTML = '<option value="">-- Select from list --</option>';
           
           // Add options from data
           fieldOptions[field].forEach(opt => {
@@ -687,7 +684,7 @@
       const wrapper = document.createElement('div');
       wrapper.className = 'search-input-wrapper';
       
-      let optionsHtml = `<option value="">-- Select --</option>`;
+      let optionsHtml = `<option value="">-- Select from list --</option>`;
       fieldOptions[field].forEach(opt => {
         optionsHtml += `<option value="${opt}">${opt}</option>`;
       });
@@ -697,8 +694,8 @@
           <select class="search-select" onchange="filterFamilies()" data-field="${field}">
             ${optionsHtml}
           </select>
-          <span class="input-divider">or</span>
-          <input type="text" class="search-input" placeholder="Type..." oninput="filterFamilies()" data-field-text="${field}">
+          <span class="input-divider">or type below</span>
+          <input type="text" class="search-input" placeholder="Type custom..." oninput="filterFamilies()" data-field-text="${field}">
         </div>
         <button class="remove-search-btn" onclick="removeSearchCombo(this, '${field}')">×</button>`;
       container.appendChild(wrapper);
