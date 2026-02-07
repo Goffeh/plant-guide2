@@ -186,6 +186,7 @@
       background: var(--input-bg);
       color: var(--text-primary);
     }
+    .search-input { flex: 1; }
     .search-select {
       cursor: pointer;
       appearance: none;
@@ -193,6 +194,7 @@
       background-repeat: no-repeat;
       background-position: right 10px center;
       padding-right: 30px;
+      margin-bottom: 4px;
     }
     body.dark-mode .search-select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2381c784' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
@@ -364,16 +366,6 @@
     .filter-tag-remove:hover {
       color: #c62828;
     }
-    .input-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      margin: 4px 0;
-    }
     .text-inputs-container {
       display: flex;
       flex-direction: column;
@@ -430,74 +422,98 @@
           </div>
           <div class="search-box">
             <label class="search-label">GROWTH FORM <button class="add-search-btn" onclick="addTextInput('growth')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="growth">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="growthInputs"></div>
+            <div class="text-inputs-container" id="growthInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="growth">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="growth">
+              </div>
+            </div>
             <div class="selected-filters" id="growthTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">LEAF CHARACTERISTICS <button class="add-search-btn" onclick="addTextInput('leaf')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="leaf">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="leafInputs"></div>
+            <div class="text-inputs-container" id="leafInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="leaf">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="leaf">
+              </div>
+            </div>
             <div class="selected-filters" id="leafTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">FLOWER CHARACTERISTICS <button class="add-search-btn" onclick="addTextInput('flower')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="flower">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="flowerInputs"></div>
+            <div class="text-inputs-container" id="flowerInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="flower">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="flower">
+              </div>
+            </div>
             <div class="selected-filters" id="flowerTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">FRUIT CHARACTERISTICS <button class="add-search-btn" onclick="addTextInput('fruit')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="fruit">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="fruitInputs"></div>
+            <div class="text-inputs-container" id="fruitInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="fruit">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="fruit">
+              </div>
+            </div>
             <div class="selected-filters" id="fruitTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">DISTRIBUTION <button class="add-search-btn" onclick="addTextInput('distribution')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="distribution">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="distributionInputs"></div>
+            <div class="text-inputs-container" id="distributionInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="distribution">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="distribution">
+              </div>
+            </div>
             <div class="selected-filters" id="distributionTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">REPRODUCTIVE STRATEGY <button class="add-search-btn" onclick="addTextInput('reproductive')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="reproductive">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="reproductiveInputs"></div>
+            <div class="text-inputs-container" id="reproductiveInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="reproductive">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="reproductive">
+              </div>
+            </div>
             <div class="selected-filters" id="reproductiveTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">DISPERSAL TYPE <button class="add-search-btn" onclick="addTextInput('dispersal')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="dispersal">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="dispersalInputs"></div>
+            <div class="text-inputs-container" id="dispersalInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="dispersal">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="dispersal">
+              </div>
+            </div>
             <div class="selected-filters" id="dispersalTags"></div>
           </div>
           <div class="search-box">
             <label class="search-label">USES/INFO <button class="add-search-btn" onclick="addTextInput('uses')">+</button></label>
-            <select class="search-select" onchange="filterFamilies()" data-field="uses">
-              <option value="">-- Select from list --</option>
-            </select>
-            <span class="input-divider">or type below</span>
-            <div class="text-inputs-container" id="usesInputs"></div>
+            <div class="text-inputs-container" id="usesInputs">
+              <select class="search-select" onchange="filterFamilies()" data-field="uses">
+                <option value="">-- Select from list --</option>
+              </select>
+              <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." oninput="filterFamilies()" data-field-text="uses">
+              </div>
+            </div>
             <div class="selected-filters" id="usesTags"></div>
           </div>
         </div>
@@ -518,7 +534,7 @@
     let families = [];
     let expandedCard = null;
     let fieldOptions = {};
-    const searchCounts = { growth: 0, leaf: 0, flower: 0, fruit: 0, distribution: 0, reproductive: 0, dispersal: 0, uses: 0 };
+    const searchCounts = { growth: 1, leaf: 1, flower: 1, fruit: 1, distribution: 1, reproductive: 1, dispersal: 1, uses: 1 };
     
     const fieldMap = {
       growth: 'Growth Form',
@@ -640,6 +656,7 @@
     }
     
     function removeTextInput(btn, field) {
+      if (searchCounts[field] <= 1) return;
       btn.parentElement.remove();
       searchCounts[field]--;
       filterFamilies();
