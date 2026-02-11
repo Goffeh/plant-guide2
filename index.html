@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Plant Guide">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <title>Plant Family Guide</title>
+  <title>Plant Families of the World ID App</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -105,16 +105,51 @@
     .tip-text { font-size: 12px; color: var(--text-secondary); margin-top: 10px; line-height: 1.4; }
     h1 {
       color: var(--text-primary);
-      font-size: 24px;
-      margin-bottom: 5px;
+      font-size: 22px;
+      margin-bottom: 2px;
       margin-top: 50px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
-    .subtitle { color: var(--text-secondary); font-size: 13px; margin-bottom: 15px; }
+    .app-subtitle {
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
     .reload-btn {
       background: #ff9800;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .help-btn {
+      background: #2196f3;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .show-all-btn {
+      background: #9c27b0;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .back-btn {
+      background: #4caf50;
       color: white;
       border: none;
       padding: 8px 16px;
@@ -135,8 +170,35 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .search-header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
     .search-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+    .search-status {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      background: #e8f5e9;
+      border-radius: 12px;
+    }
+    body.dark-mode .search-status {
+      background: #1b3d1b;
+    }
+    .search-status.found {
+      background: #c8e6c9;
+      color: #2e7d32;
+      font-weight: 600;
+    }
+    body.dark-mode .search-status.found {
+      background: #2e5a2e;
+      color: #a5d6a7;
+    }
     .clear-btn {
       background: #ffebee;
       color: #c62828;
@@ -289,15 +351,16 @@
       color: var(--text-secondary);
       border-top: 1px solid var(--input-border);
     }
-    .no-results {
+    .no-results, .start-searching {
       text-align: center;
       padding: 40px 20px;
       color: var(--text-secondary);
     }
-    .no-results-icon { font-size: 48px; margin-bottom: 15px; }
+    .no-results-icon, .start-icon { font-size: 48px; margin-bottom: 15px; }
     @media (max-width: 600px) {
       .cards-grid { grid-template-columns: 1fr; }
       .search-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 18px; }
     }
     @media (min-width: 601px) {
       .search-grid { grid-template-columns: repeat(2, 1fr); }
@@ -371,6 +434,92 @@
       flex-direction: column;
       gap: 4px;
     }
+    /* Help Page Styles */
+    .help-screen {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 60px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .help-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .help-section {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--input-border);
+    }
+    .help-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .help-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .help-section-content {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .help-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .help-keyword {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    body.dark-mode .help-keyword {
+      background: #1b3d1b;
+      color: #81c784;
+    }
+    .help-intro {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      color: #1565c0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    body.dark-mode .help-intro {
+      background: #0d3d5c;
+      color: #90caf9;
+    }
+    .found-message {
+      text-align: center;
+      padding: 15px;
+      background: #c8e6c9;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      color: #2e7d32;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    body.dark-mode .found-message {
+      background: #2e5a2e;
+      color: #a5d6a7;
+    }
   </style>
 </head>
 <body>
@@ -383,10 +532,12 @@
   </div>
   
   <div class="container">
+    <!-- Upload Screen -->
     <div id="uploadScreen" class="upload-screen">
       <div class="upload-icon">🌿</div>
-      <div class="upload-title">Plant Family Guide</div>
-      <div class="upload-subtitle">Paste your plant family CSV data below or upload a file</div>
+      <div class="upload-title">Plant Families of the World ID App</div>
+      <div class="upload-subtitle">(for offline use) made by Goffe Hoving</div>
+      <div style="margin-top: 20px;"></div>
       <textarea id="csvInput" class="csv-textarea" placeholder="Paste your CSV data here...&#10;&#10;Format: Family,Order,Group,Common genera,Growth Form,Leaf Characteristics,Flower Characteristics,Fruit Characteristics,Distribution,Reproductive Strategy,Common Dispersal Type,Sp. estimate,Two extremes,Uses/other info"></textarea>
       <button class="load-btn" onclick="loadCSV()">📊 Load Data</button>
       <button class="save-btn" onclick="saveCSV()">💾 Save to Browser</button>
@@ -398,13 +549,203 @@
       </div>
       <p class="tip-text">💡 Your data is stored locally in your browser. Once loaded, the app works offline!</p>
     </div>
+
+    <!-- Help Screen -->
+    <div id="helpScreen" class="help-screen hidden">
+      <button class="back-btn" onclick="showApp()">← Back to Search</button>
+      <div class="help-title">📖 How to Use This App</div>
+      
+      <div class="help-intro">
+        Use the search filters to find plant families by their characteristics. You can either select from the dropdown menu or type your own keywords. Results only appear when you enter search criteria.
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🌱 Growth Form</div>
+        <div class="help-section-content">
+          Search by the plant's physical growth habit or structure.
+          <div class="help-keywords">
+            <span class="help-keyword">tree</span>
+            <span class="help-keyword">shrub</span>
+            <span class="help-keyword">herb</span>
+            <span class="help-keyword">liana</span>
+            <span class="help-keyword">climber</span>
+            <span class="help-keyword">epiphyte</span>
+            <span class="help-keyword">succulent</span>
+            <span class="help-keyword">aquatic</span>
+            <span class="help-keyword">palm</span>
+            <span class="help-keyword">grass</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🍃 Leaf Characteristics</div>
+        <div class="help-section-content">
+          Search by leaf structure, arrangement, or special features.
+          <div class="help-keywords">
+            <span class="help-keyword">simple</span>
+            <span class="help-keyword">compound</span>
+            <span class="help-keyword">entire</span>
+            <span class="help-keyword">serrate</span>
+            <span class="help-keyword">lobed</span>
+            <span class="help-keyword">opposite</span>
+            <span class="help-keyword">alternate</span>
+            <span class="help-keyword">whorled</span>
+            <span class="help-keyword">pinnate</span>
+            <span class="help-keyword">palmate</span>
+            <span class="help-keyword">stipules</span>
+            <span class="help-keyword">trifoliate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🌸 Flower Characteristics</div>
+        <div class="help-section-content">
+          Search by flower structure, symmetry, or number of parts.
+          <div class="help-keywords">
+            <span class="help-keyword">4-merous</span>
+            <span class="help-keyword">5-merous</span>
+            <span class="help-keyword">3-merous</span>
+            <span class="help-keyword">zygomorphic</span>
+            <span class="help-keyword">actinomorphic</span>
+            <span class="help-keyword">bilateral</span>
+            <span class="help-keyword">radial</span>
+            <span class="help-keyword">inferior ovary</span>
+            <span class="help-keyword">superior ovary</span>
+            <span class="help-keyword">fused petals</span>
+            <span class="help-keyword">free petals</span>
+            <span class="help-keyword">tubular</span>
+            <span class="help-keyword">papilionaceous</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🍎 Fruit Characteristics</div>
+        <div class="help-section-content">
+          Search by fruit type or structure.
+          <div class="help-keywords">
+            <span class="help-keyword">drupe</span>
+            <span class="help-keyword">berry</span>
+            <span class="help-keyword">capsule</span>
+            <span class="help-keyword">pod</span>
+            <span class="help-keyword">legume</span>
+            <span class="help-keyword">nut</span>
+            <span class="help-keyword">achene</span>
+            <span class="help-keyword">samara</span>
+            <span class="help-keyword">follicle</span>
+            <span class="help-keyword">silique</span>
+            <span class="help-keyword">superior</span>
+            <span class="help-keyword">inferior</span>
+            <span class="help-keyword">fleshy</span>
+            <span class="help-keyword">dry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🌍 Distribution</div>
+        <div class="help-section-content">
+          Search by geographic region or climate zone.
+          <div class="help-keywords">
+            <span class="help-keyword">tropical</span>
+            <span class="help-keyword">temperate</span>
+            <span class="help-keyword">cosmopolitan</span>
+            <span class="help-keyword">pantropical</span>
+            <span class="help-keyword">Africa</span>
+            <span class="help-keyword">Asia</span>
+            <span class="help-keyword">America</span>
+            <span class="help-keyword">Australia</span>
+            <span class="help-keyword">Mediterranean</span>
+            <span class="help-keyword">mountains</span>
+            <span class="help-keyword">arid</span>
+            <span class="help-keyword">endemic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🐝 Reproductive Strategy</div>
+        <div class="help-section-content">
+          Search by pollination method or reproductive features.
+          <div class="help-keywords">
+            <span class="help-keyword">insect pollinated</span>
+            <span class="help-keyword">wind pollinated</span>
+            <span class="help-keyword">bird pollinated</span>
+            <span class="help-keyword">bat pollinated</span>
+            <span class="help-keyword">self-pollinating</span>
+            <span class="help-keyword">dioecious</span>
+            <span class="help-keyword">monoecious</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">💨 Dispersal Type</div>
+        <div class="help-section-content">
+          Search by how seeds or fruits are dispersed.
+          <div class="help-keywords">
+            <span class="help-keyword">wind</span>
+            <span class="help-keyword">animal</span>
+            <span class="help-keyword">bird</span>
+            <span class="help-keyword">water</span>
+            <span class="help-keyword">explosive</span>
+            <span class="help-keyword">gravity</span>
+            <span class="help-keyword">ant</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">🏷️ Uses / Other Info</div>
+        <div class="help-section-content">
+          Search by economic uses or other notable features.
+          <div class="help-keywords">
+            <span class="help-keyword">edible</span>
+            <span class="help-keyword">medicinal</span>
+            <span class="help-keyword">timber</span>
+            <span class="help-keyword">ornamental</span>
+            <span class="help-keyword">toxic</span>
+            <span class="help-keyword">fiber</span>
+            <span class="help-keyword">oil</span>
+            <span class="help-keyword">dye</span>
+            <span class="help-keyword">spice</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-section">
+        <div class="help-section-title">💡 Tips</div>
+        <div class="help-section-content">
+          <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>Use the <strong>dropdown menu</strong> to see all available options from your data</li>
+            <li>Use the <strong>text box</strong> to type custom keywords</li>
+            <li>Click the <strong>+ button</strong> to add more search boxes (up to 5 per field)</li>
+            <li>All filters work together — results must match ALL criteria</li>
+            <li>Click on a family card to see more details</li>
+            <li>Use <strong>Clear All</strong> to reset all filters</li>
+            <li>Use <strong>Show All Families</strong> to browse the complete list</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main App Screen -->
     <div id="appScreen" class="hidden">
-      <h1>🌿 Plant Family Guide</h1>
-      <p class="subtitle">Showing <span id="filteredCount">0</span> of <span id="totalCount">0</span> families</p>
-      <button class="reload-btn" onclick="showUpload()">📂 Load Different Data</button>
+      <h1>Plant Families of the World ID App</h1>
+      <p class="app-subtitle">(for offline use) made by Goffe Hoving</p>
+      <div class="top-buttons">
+        <button class="reload-btn" onclick="showUpload()">📂 Load Different Data</button>
+        <button class="help-btn" onclick="showHelp()">📖 How to Use</button>
+        <button class="show-all-btn" onclick="showAllFamilies()">👁️ Show All Families</button>
+      </div>
       <div class="search-panel">
         <div class="search-header">
-          <span class="search-title">🔍 Search & Filter (<span id="activeCount">0</span> active)</span>
+          <div class="search-header-left">
+            <span class="search-title">🔍 Search & Filter (<span id="activeCount">0</span> active)</span>
+            <span class="search-status" id="searchStatus">Choose out of <span id="totalCount">0</span> families</span>
+          </div>
           <button class="clear-btn" id="clearBtn" style="display:none" onclick="clearAll()">Clear All</button>
         </div>
         <div class="search-grid">
@@ -518,8 +859,16 @@
           </div>
         </div>
       </div>
-      <div class="active-filters" id="activeFilters" style="display:none">
-        🎯 <span id="activeFiltersCount">0</span> filters active — showing matching families
+      <div id="foundMessage" class="found-message hidden">
+        You found the family/group!
+      </div>
+      <div id="activeFilters" class="active-filters" style="display:none">
+        🎯 <span id="activeFiltersCount">0</span> filters active — <span id="filteredCount">0</span> choices out of <span id="totalCount2">0</span> families/groups
+      </div>
+      <div id="startSearching" class="start-searching">
+        <div class="start-icon">🔍</div>
+        <p>Start typing or select filters to find plant families</p>
+        <p style="margin-top:10px; font-size: 13px;">Or click "Show All Families" to browse through <span id="totalCount3">0</span> families/groups</p>
       </div>
       <div id="noResults" class="no-results" style="display:none">
         <div class="no-results-icon">🔍</div>
@@ -534,6 +883,7 @@
     let families = [];
     let expandedCard = null;
     let fieldOptions = {};
+    let showingAll = false;
     const searchCounts = { growth: 1, leaf: 1, flower: 1, fruit: 1, distribution: 1, reproductive: 1, dispersal: 1, uses: 1 };
     
     const fieldMap = {
@@ -591,6 +941,29 @@
     if (localStorage.getItem('darkMode') === 'true') {
       document.body.classList.add('dark-mode');
       document.getElementById('themeBtn').textContent = '☀️';
+    }
+    
+    // Navigation functions
+    function showHelp() {
+      document.getElementById('appScreen').classList.add('hidden');
+      document.getElementById('helpScreen').classList.remove('hidden');
+    }
+    
+    function showApp() {
+      document.getElementById('helpScreen').classList.add('hidden');
+      document.getElementById('appScreen').classList.remove('hidden');
+    }
+    
+    function showAllFamilies() {
+      showingAll = true;
+      renderCards(families);
+      document.getElementById('startSearching').style.display = 'none';
+      document.getElementById('activeFilters').style.display = 'block';
+      document.getElementById('activeFiltersCount').textContent = '0';
+      document.getElementById('filteredCount').textContent = families.length;
+      document.getElementById('searchStatus').textContent = `Showing all ${families.length} families/groups`;
+      document.getElementById('searchStatus').classList.remove('found');
+      document.getElementById('foundMessage').classList.add('hidden');
     }
     
     // Extract unique characteristics split by comma from a column
@@ -677,6 +1050,8 @@
         document.getElementById('appScreen').classList.remove('hidden');
         document.getElementById('familyCount').textContent = families.length;
         document.getElementById('totalCount').textContent = families.length;
+        document.getElementById('totalCount2').textContent = families.length;
+        document.getElementById('totalCount3').textContent = families.length;
         filterFamilies();
         setTimeout(() => {
           if (confirm('Data loaded! Save for offline use?')) { 
@@ -734,6 +1109,8 @@
       document.getElementById('appScreen').classList.remove('hidden');
       document.getElementById('familyCount').textContent = families.length;
       document.getElementById('totalCount').textContent = families.length;
+      document.getElementById('totalCount2').textContent = families.length;
+      document.getElementById('totalCount3').textContent = families.length;
       filterFamilies();
     }
     
@@ -745,6 +1122,7 @@
     
     function showUpload() {
       document.getElementById('appScreen').classList.add('hidden');
+      document.getElementById('helpScreen').classList.add('hidden');
       document.getElementById('uploadScreen').classList.remove('hidden');
     }
     
@@ -769,14 +1147,40 @@
     }
     
     function filterFamilies() {
+      showingAll = false;
       const familyVal = document.getElementById('family').value.trim().toLowerCase();
       const generaVal = document.getElementById('genera').value.trim().toLowerCase();
+      
+      // Count active filters first
+      let activeCount = 0;
+      if (familyVal) activeCount++;
+      if (generaVal) activeCount++;
+      
+      const fields = ['growth', 'leaf', 'flower', 'fruit', 'distribution', 'reproductive', 'dispersal', 'uses'];
+      fields.forEach(field => {
+        const vals = getFieldValues(field);
+        activeCount += vals.length;
+      });
+      
+      // If no filters, show start message
+      if (activeCount === 0) {
+        document.getElementById('startSearching').style.display = 'block';
+        document.getElementById('noResults').style.display = 'none';
+        document.getElementById('cardsContainer').style.display = 'none';
+        document.getElementById('activeFilters').style.display = 'none';
+        document.getElementById('clearBtn').style.display = 'none';
+        document.getElementById('activeCount').textContent = 0;
+        document.getElementById('searchStatus').textContent = `Choose out of ${families.length} families/groups`;
+        document.getElementById('searchStatus').classList.remove('found');
+        document.getElementById('foundMessage').classList.add('hidden');
+        return;
+      }
+      
+      document.getElementById('startSearching').style.display = 'none';
       
       const filtered = families.filter(family => {
         const matchFamily = !familyVal || (family.Family || '').toLowerCase().includes(familyVal);
         const matchGenera = !generaVal || (family['Common genera'] || '').toLowerCase().includes(generaVal);
-        
-        const fields = ['growth', 'leaf', 'flower', 'fruit', 'distribution', 'reproductive', 'dispersal', 'uses'];
         
         for (let field of fields) {
           const vals = getFieldValues(field);
@@ -788,17 +1192,9 @@
         return matchFamily && matchGenera;
       });
       
-      // Count active filters
-      let activeCount = 0;
-      if (familyVal) activeCount++;
-      if (generaVal) activeCount++;
-      
-      const fields = ['growth', 'leaf', 'flower', 'fruit', 'distribution', 'reproductive', 'dispersal', 'uses'];
+      // Update filter tags
       fields.forEach(field => {
         const vals = getFieldValues(field);
-        activeCount += vals.length;
-        
-        // Update filter tags
         const tagsContainer = document.getElementById(field + 'Tags');
         if (tagsContainer) {
           tagsContainer.innerHTML = vals.map(v => 
@@ -809,8 +1205,28 @@
       
       document.getElementById('activeCount').textContent = activeCount;
       document.getElementById('activeFiltersCount').textContent = activeCount;
+      document.getElementById('filteredCount').textContent = filtered.length;
       document.getElementById('clearBtn').style.display = activeCount > 0 ? 'block' : 'none';
       document.getElementById('activeFilters').style.display = activeCount > 0 ? 'block' : 'none';
+      
+      // Update status message
+      const statusEl = document.getElementById('searchStatus');
+      const foundMessageEl = document.getElementById('foundMessage');
+      
+      if (filtered.length === 1) {
+        statusEl.textContent = 'You found the family/group!';
+        statusEl.classList.add('found');
+        foundMessageEl.classList.remove('hidden');
+      } else if (filtered.length === 0) {
+        statusEl.textContent = `No matches out of ${families.length} families/groups`;
+        statusEl.classList.remove('found');
+        foundMessageEl.classList.add('hidden');
+      } else {
+        statusEl.textContent = `${filtered.length} choices out of ${families.length} families/groups`;
+        statusEl.classList.remove('found');
+        foundMessageEl.classList.add('hidden');
+      }
+      
       renderCards(filtered);
     }
     
@@ -835,8 +1251,13 @@
     function renderCards(filtered) {
       const container = document.getElementById('cardsContainer');
       const noResults = document.getElementById('noResults');
-      document.getElementById('filteredCount').textContent = filtered.length;
-      if (filtered.length === 0) { container.style.display = 'none'; noResults.style.display = 'block'; return; }
+      
+      if (filtered.length === 0) { 
+        container.style.display = 'none'; 
+        noResults.style.display = 'block'; 
+        return; 
+      }
+      
       container.style.display = 'grid';
       noResults.style.display = 'none';
       container.innerHTML = filtered.map((family, idx) => {
@@ -873,7 +1294,11 @@
     
     function toggleCard(idx) { 
       expandedCard = expandedCard === idx ? null : idx; 
-      filterFamilies(); 
+      if (showingAll) {
+        renderCards(families);
+      } else {
+        filterFamilies(); 
+      }
     }
     
     function clearAll() { 
@@ -881,7 +1306,8 @@
       document.getElementById('genera').value = '';
       document.querySelectorAll('.search-select').forEach(select => select.value = ''); 
       document.querySelectorAll('input[data-field-text]').forEach(input => input.value = '');
-      expandedCard = null; 
+      expandedCard = null;
+      showingAll = false;
       filterFamilies(); 
     }
     
